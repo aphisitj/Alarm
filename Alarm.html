@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>Alarm : Ms</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+  </head>
+
+  <body onload="getTime()">
+      <div class="container">
+	  	  
+	  		<div id="showtime" style="font-size: 150px"></div>
+	  			<div class="col-lg-4 col-lg-offset-4">
+	  				<div class="lock-screen">  
+               
+                      <h4 class="mb">
+                      <form class="form-inline" role="form" style="margin-top: 100px">
+                       <audio id="myAudio">  <!-- controls -->
+                            <source src="Alarm.mp3" type="audio/mp3">
+                        </audio>
+                        <h2>Alarm : Ms</h2>
+                          <div class="form-group">
+                              <label class="sr-only" for="exampleInputEmail2">Hour</label>
+                              <input type="number" max="23" min="00" maxlength="2" class="form-control" id="hr" placeholder="Hr" required>
+                          </div>
+                          <div class="form-group">
+                              <label class="sr-only" for="exampleInputPassword2">Password</label>
+                              <input type="number" maxlength="2" max="60" min="00" class="form-control" id="mn" placeholder="Mn" required>
+                          </div>
+                          <span id="gg"></span>
+                       <button onclick="pauseVid()" type="button" class="btn btn-theme">Pause Alarm</button><br> 
+                      </form>
+                  
+		  				
+		  				
+	  				</div><! --/lock-screen -->
+	  			</div><!-- /col-lg-4 -->
+	  	
+	  	</div><!-- /container -->
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>
+    <script>
+        $.backstretch("assets/img/grass_sunlight_sunset_90198_3840x2160.jpg", {speed: 500});
+    </script>
+    <script>
+        function getTime()
+        {
+            var today=new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();   
+            m=checkTime(m);
+            s=checkTime(s);
+            checkTimes(h,m);
+            document.getElementById('showtime').innerHTML=h+":"+m+":"+s;
+            t=setTimeout(function(){getTime()},500);
+        }
+
+        function checkTime(i)
+        {
+            if (i<10)
+            {
+                i="0" + i;
+            }
+            return i;
+        }
+
+        function checkTimes(h,m)
+        {
+            var hr  = document.getElementById("hr").value;
+            var mn  = document.getElementById("mn").value;            
+             if(h==hr)
+            {       
+                if(m==mn)
+                {                 
+                    document.getElementById("myAudio").play();  
+                }else{                  
+                    document.getElementById("myAudio").pause();  
+                }
+            }
+                
+        }
+
+        function pauseVid() { 
+            document.getElementById("myAudio").pause();
+            document.getElementById("hr").value = '00' ; 
+            document.getElementById("mn").value = '00' ; 
+        } 
+    </script>
+
+  </body>
+</html>
